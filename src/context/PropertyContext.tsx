@@ -6,15 +6,15 @@ import { PROPERTIES, Property } from "@/data/properties";
 interface PropertyContextType {
   properties: Property[];
   publicProperties: Property[];
+  isLoading: boolean;
   addProperty: (newProp: Omit<Property, "id"> & { id?: string }) => Property;
   updateProperty: (id: string, updates: Partial<Property>) => void;
   deleteProperty: (id: string) => void;
   setStatus: (id: string, status: "active" | "inactive" | "sold") => void;
   resetProperties: () => void;
+  refreshProperties: () => Promise<void>;
   formatPriceINR: (amount: number) => string;
 }
-
-const STORAGE_KEY = "aayat_estate_properties_v2";
 
 export function formatPriceINR(val: number): string {
   if (val >= 10000000) {
@@ -37,60 +37,30 @@ const PropertyContext = createContext<PropertyContextType | undefined>(undefined
 
 export function PropertyProvider({ children }: { children: ReactNode }) {
   const [properties, setProperties] = useState<Property[]>(PROPERTIES);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // Load from localStorage on client mount
-  useEffect(() => {
+  // Fetch properties from server DB API on mount
+  const fetchFromDb = useCallback(async () => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setProperties(parsed);
+      const res = await fetch("/api/properties", { cache: "no-store" });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+          setProperties(json.data);
         }
       }
-    } catch (e) {
-      console.warn("Failed to load saved properties:", e);
+    } catch (err) {
+      console.warn("Failed to fetch properties from server DB API, using defaults:", err);
     } finally {
-      setIsLoaded(true);
+      setIsLoading(false);
     }
   }, []);
 
-  // Save to localStorage whenever properties change (after initial load)
-  const saveProperties = useCallback((newList: Property[]) => {
-    setProperties(newList);
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(newList));
-      // Dispatch custom event to sync other tabs or components
-      window.dispatchEvent(new Event("aayat_properties_updated"));
-    } catch (e) {
-      console.error("Failed to save properties to localStorage:", e);
-    }
-  }, []);
-
-  // Listen to custom updates across tabs
   useEffect(() => {
-    const handleUpdate = () => {
-      try {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed)) {
-            setProperties(parsed);
-          }
-        }
-      } catch (e) {
-        // ignore
-      }
-    };
-    window.addEventListener("aayat_properties_updated", handleUpdate);
-    window.addEventListener("storage", handleUpdate);
-    return () => {
-      window.removeEventListener("aayat_properties_updated", handleUpdate);
-      window.removeEventListener("storage", handleUpdate);
-    };
-  }, []);
+    fetchFromDb();
+  }, [fetchFromDb]);
 
+  // Add new property: Optimistic UI update + server DB API POST
   const addProperty = useCallback(
     (newProp: Omit<Property, "id"> & { id?: string }): Property => {
       const generatedId = newProp.id || `prop-${Date.now()}`;
@@ -101,56 +71,89 @@ export function PropertyProvider({ children }: { children: ReactNode }) {
         formattedPrice: newProp.formattedPrice || formatPriceINR(newProp.price),
       };
 
-      const updated = [propertyToAdd, ...properties];
-      saveProperties(updated);
+      // Optimistic state update
+      setProperties((prev) => [propertyToAdd, ...prev.filter((p) => p.id !== generatedId)]);
+
+      // Save to server Database via API
+      fetch("/api/properties", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(propertyToAdd),
+      }).catch((err) => {
+        console.error("Failed to persist property in database API:", err);
+      });
+
       return propertyToAdd;
     },
-    [properties, saveProperties]
+    []
   );
 
+  // Update property: Optimistic UI update + server DB API PATCH
   const updateProperty = useCallback(
     (id: string, updates: Partial<Property>) => {
-      const updated = properties.map((p) => {
-        if (p.id === id) {
-          const newPrice = updates.price !== undefined ? updates.price : p.price;
-          return {
-            ...p,
-            ...updates,
-            formattedPrice:
-              updates.formattedPrice ||
-              (updates.price !== undefined ? formatPriceINR(newPrice) : p.formattedPrice),
-          };
-        }
-        return p;
+      setProperties((prev) =>
+        prev.map((p) => {
+          if (p.id === id) {
+            const newPrice = updates.price !== undefined ? updates.price : p.price;
+            return {
+              ...p,
+              ...updates,
+              formattedPrice:
+                updates.formattedPrice ||
+                (updates.price !== undefined ? formatPriceINR(newPrice) : p.formattedPrice),
+            };
+          }
+          return p;
+        })
+      );
+
+      // Save to server Database via API
+      fetch("/api/properties", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, ...updates }),
+      }).catch((err) => {
+        console.error("Failed to update property in database API:", err);
       });
-      saveProperties(updated);
     },
-    [properties, saveProperties]
+    []
   );
 
-  const deleteProperty = useCallback(
-    (id: string) => {
-      const updated = properties.filter((p) => p.id !== id);
-      saveProperties(updated);
-    },
-    [properties, saveProperties]
-  );
+  // Delete property: Optimistic UI update + server DB API DELETE
+  const deleteProperty = useCallback((id: string) => {
+    setProperties((prev) => prev.filter((p) => p.id !== id));
 
-  const setStatus = useCallback(
-    (id: string, status: "active" | "inactive" | "sold") => {
-      const updated = properties.map((p) => (p.id === id ? { ...p, status } : p));
-      saveProperties(updated);
-    },
-    [properties, saveProperties]
-  );
-
-  const resetProperties = useCallback(() => {
-    localStorage.removeItem(STORAGE_KEY);
-    setProperties(PROPERTIES);
-    window.dispatchEvent(new Event("aayat_properties_updated"));
+    fetch(`/api/properties?id=${encodeURIComponent(id)}`, {
+      method: "DELETE",
+    }).catch((err) => {
+      console.error("Failed to delete property in database API:", err);
+    });
   }, []);
 
-  // Filter out inactive properties for the public landing page
+  // Set status: Optimistic UI update + server DB API PATCH
+  const setStatus = useCallback((id: string, status: "active" | "inactive" | "sold") => {
+    setProperties((prev) => prev.map((p) => (p.id === id ? { ...p, status } : p)));
+
+    fetch("/api/properties", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, status }),
+    }).catch((err) => {
+      console.error("Failed to update status in database API:", err);
+    });
+  }, []);
+
+  // Reset properties back to curated defaults in DB
+  const resetProperties = useCallback(async () => {
+    setProperties(PROPERTIES);
+    try {
+      await fetch("/api/properties/reset", { method: "POST" });
+    } catch (err) {
+      console.error("Failed to reset properties in database API:", err);
+    }
+  }, []);
+
+  // Filter out inactive properties for public visitors
   const publicProperties = properties.filter((p) => p.status !== "inactive");
 
   return (
@@ -158,11 +161,13 @@ export function PropertyProvider({ children }: { children: ReactNode }) {
       value={{
         properties,
         publicProperties,
+        isLoading,
         addProperty,
         updateProperty,
         deleteProperty,
         setStatus,
         resetProperties,
+        refreshProperties: fetchFromDb,
         formatPriceINR,
       }}
     >
