@@ -1,0 +1,454 @@
+export interface LocalizedText {
+  en: string;
+  hi: string;
+  mr: string;
+}
+
+export interface Property {
+  id: string;
+  title: LocalizedText;
+  tagline: LocalizedText;
+  price: number; // in INR Rupees
+  formattedPrice: string; // e.g., "₹42.50 Cr"
+  type: "Villa" | "Penthouse" | "Waterfront" | "Mansion" | "Commercial";
+  category: "Buy" | "Rent";
+  location: LocalizedText;
+  city: "Mumbai" | "Delhi" | "Goa" | "Bangalore" | "Pune";
+  country: string;
+  bedrooms: number;
+  bathrooms: number;
+  areaSqFt: number;
+  image: string;
+  featured?: boolean;
+  isNew?: boolean;
+  exclusive?: boolean;
+  description: LocalizedText;
+  amenities: LocalizedText[];
+  yearBuilt: number;
+  parkingSpaces: number;
+  roiEstimate: LocalizedText;
+  reraNumber: string;
+}
+
+export const PROPERTIES: Property[] = [
+  {
+    id: "prop-1",
+    title: {
+      en: "The Imperial Worli Sea Face Villa",
+      hi: "द इंपीरियल वर्ली सी फेस स्काई विला",
+      mr: "द इम्पेरियल वरळी सी फेस स्काय व्हिला",
+    },
+    tagline: {
+      en: "Unobstructed Arabian Sea & Bandra-Worli Sea Link Vistas",
+      hi: "अरब सागर और बांद्रा-वर्ली सी लिंक का मनमोहक दृश्य",
+      mr: "अरबी समुद्र आणि वांद्रे-वरळी सी लिंकचे विहंगम दृश्य",
+    },
+    price: 425000000, // ₹42.50 Cr
+    formattedPrice: "₹42.50 Cr",
+    type: "Waterfront",
+    category: "Buy",
+    location: {
+      en: "Worli Sea Face, South Mumbai",
+      hi: "वर्ली सी फेस, दक्षिण मुंबई",
+      mr: "वरळी सी फेस, दक्षिण मुंबई",
+    },
+    city: "Mumbai",
+    country: "India",
+    bedrooms: 5,
+    bathrooms: 7,
+    areaSqFt: 8400,
+    image: "/images/hero-villa.jpg",
+    featured: true,
+    exclusive: true,
+    description: {
+      en: "Commanding the most coveted promontory on Worli Sea Face, this bespoke residence merges Italian Botticino marble, triple-glazed soundproof sea-facing glass, private cantilevered infinity pool, temperature-controlled cellar, and 100% Vastu-compliant layout.",
+      hi: "वर्ली सी फेस पर स्थित यह विशेष आवास इतालवी बॉटिचिनो मार्बल, समुद्र की ओर मुख वाले तिहरे कांच, निजी इन्फिनिटी पूल, तापमान नियंत्रित वाइन रूम और 100% वास्तुसम्मत डिज़ाइन से परिपूर्ण है।",
+      mr: "वरळी सी फेसवरील हे अलिशान निवासस्थान इटालियन बॉटिचिनो मार्बल, समुद्राकडे तोंड असलेल्या साऊंडप्रुफ काचा, खाजगी इन्फिनिटी पूल आणि 100% वास्तुशास्त्रावर आधारित आहे.",
+    },
+    amenities: [
+      {
+        en: "100% Vastu Compliant East-Facing Entry",
+        hi: "100% वास्तुसम्मत पूर्वमुखी प्रवेशद्वार",
+        mr: "100% वास्तुशास्त्रानुसार पूर्व दिशेचे प्रवेशद्वार",
+      },
+      {
+        en: "Private Arabian Sea-Facing Plunge Pool",
+        hi: "अरब सागर की ओर निजी प्लंज पूल",
+        mr: "अरबी समुद्राकडे तोंड असलेला खाजगी प्लंज पूल",
+      },
+      {
+        en: "Italian Calacatta & Botticino Marble Flooring",
+        hi: "इतालवी कैलाकट्टा और बॉटिचिनो मार्बल फ्लोरिंग",
+        mr: "इटालियन कॅलाकट्टा व बॉटिचिनो मार्बल फ्लोरिंग",
+      },
+      {
+        en: "Sub-Zero & Miele Designer Kitchen",
+        hi: "सब-ज़ीरो और मीले आधुनिक मॉड्यूलर किचन",
+        mr: "सब-झिरो व मीले डिझायनर मॉड्यूलर किचन",
+      },
+      {
+        en: "Private High-Speed Elevator with Biometric Access",
+        hi: "बायोमेट्रिक एक्सेस वाली निजी हाई-स्पीड लिफ्ट",
+        mr: "बायोमेट्रिक प्रवेशासह खाजगी हाय-स्पीड लिफ्ट",
+      },
+      {
+        en: "Separate Servants' Quarters & Chauffeur Lounge",
+        hi: "कर्मचारियों के लिए अलग क्वार्टर व ड्राइवर लाउंज",
+        mr: "कर्मचाऱ्यांसाठी स्वतंत्र खोल्या व चालक विश्रामगृह",
+      },
+      {
+        en: "Tesla EV Supercharging Stations",
+        hi: "ईवी सुपरचार्जिंग स्टेशन",
+        mr: "ईव्ही सुपरचार्जिंग स्टेशन्स",
+      },
+    ],
+    yearBuilt: 2024,
+    parkingSpaces: 4,
+    roiEstimate: {
+      en: "7.8% Net Annual Yield",
+      hi: "7.8% शुद्ध वार्षिक आय",
+      mr: "7.8% निव्वळ वार्षिक परतावा",
+    },
+    reraNumber: "MahaRERA: P51900034821",
+  },
+  {
+    id: "prop-2",
+    title: {
+      en: "The Altamount Royal Sky Penthouse",
+      hi: "द अल्टामाउंट रॉयल स्काई पेंटहाउस",
+      mr: "द अल्टामाऊंट रॉयल स्काय पेंटहाऊस",
+    },
+    tagline: {
+      en: "Double-Height Glass Palace on India's Billionaires' Row",
+      hi: "भारत की बिलेनियर रो पर दोहरी ऊंचाई वाला शीशमहल",
+      mr: "भारतातील सर्वात प्रतिष्ठित बिलियनेअर्स रो वरील भव्य स्काय पेंटहाऊस",
+    },
+    price: 680000000, // ₹68.00 Cr
+    formattedPrice: "₹68.00 Cr",
+    type: "Penthouse",
+    category: "Buy",
+    location: {
+      en: "Altamount Road, Cumballa Hill, Mumbai",
+      hi: "अल्टामाउंट रोड, कंबल्ला हिल, मुंबई",
+      mr: "अल्टामाऊंट रोड, कंबाला हिल, मुंबई",
+    },
+    city: "Mumbai",
+    country: "India",
+    bedrooms: 6,
+    bathrooms: 8,
+    areaSqFt: 11200,
+    image: "/images/penthouse.jpg",
+    featured: true,
+    isNew: true,
+    description: {
+      en: "Resting atop Mumbai's most exclusive address, this palatial triplex penthouse spans 11,200 sq ft with double-height ceiling voids, 360-degree skyline and sea vistas, private rooftop observatory, dedicated concierge, and helipad clearances.",
+      hi: "मुंबई के सबसे प्रतिष्ठित पते पर स्थित यह आलीशान ट्रिपलेक्स पेंटहाउस 11,200 वर्ग फुट में फैला है, जिसमें 360-डिग्री दृश्य, निजी रूफटॉप वेधशाला, चौबीसों घंटे कंसीयज और हेलीपैड की सुविधा है।",
+      mr: "मुंबईतील सर्वात प्रतिष्ठित पत्त्यावर स्थित हे 11,200 चौ. फुटांचे ट्रिपलेक्स पेंटहाऊस 360-अंश विहंगम दृश्ये, खाजगी रूफटॉप टेरेस, 24 तास बटलर सेवा आणि हेलिपॅड परवानगीसह उपलब्ध आहे.",
+    },
+    amenities: [
+      {
+        en: "Triplex Layout with Bespoke Glass Floating Staircase",
+        hi: "फ्लोटिंग ग्लास सीढ़ियों के साथ ट्रिपलेक्स लेआउट",
+        mr: "काचेच्या फ्लोटिंग जिन्यासह ट्रिपलेक्स रचना",
+      },
+      {
+        en: "Private Rooftop Infinity Lap Pool & Jacuzzi",
+        hi: "निजी रूफटॉप इन्फिनिटी लैप पूल और जकूज़ी",
+        mr: "खाजगी रूफटॉप इन्फिनिटी पूल व जकूझी",
+      },
+      {
+        en: "Private 14-Seat 4K Dolby Atmos Screening Room",
+        hi: "14-सीटर 4K डॉल्बी एटमॉस होम थिएटर",
+        mr: "14 आसनांचे 4K डॉल्बी अ‍ॅटमॉस थिएटर",
+      },
+      {
+        en: "24/7 Dedicated White-Glove Butler & Valet",
+        hi: "24/7 समर्पित बटलर और वैले सेवा",
+        mr: "24/7 समर्पित बटलर आणि व्हॅलेट सेवा",
+      },
+      {
+        en: "Automated Climate & Crestron Smart Home System",
+        hi: "स्वचालित क्रेस्ट्रॉन स्मार्ट होम ऑटोमेशन",
+        mr: "क्रेस्ट्रॉन स्मार्ट होम ऑटोमेशन सिस्टीम",
+      },
+    ],
+    yearBuilt: 2025,
+    parkingSpaces: 6,
+    roiEstimate: {
+      en: "8.4% Net Annual Yield",
+      hi: "8.4% शुद्ध वार्षिक आय",
+      mr: "8.4% निव्वळ वार्षिक परतावा",
+    },
+    reraNumber: "MahaRERA: P51900041209",
+  },
+  {
+    id: "prop-3",
+    title: {
+      en: "Assagao Badem Heritage Villa",
+      hi: "अस्सगाओ बादेम हेरिटेज पोर्चुगीज विला",
+      mr: "अस्सगाव बादेम हेरिटेज पोर्तुगीज व्हिला",
+    },
+    tagline: {
+      en: "Restored Indo-Portuguese Luxury Estate with Private Courtyard",
+      hi: "पुनर्जीवित इंडो-पुर्तगाली लक्जरी एस्टेट और निजी कोर्टयार्ड",
+      mr: "पुनरुज्जीवित इंडो-पोर्तुगीज लक्झरी वास्तू व खाजगी अंगण",
+    },
+    price: 185000000, // ₹18.50 Cr
+    formattedPrice: "₹18.50 Cr",
+    type: "Villa",
+    category: "Buy",
+    location: {
+      en: "Assagao, North Goa",
+      hi: "अस्सगाओ, उत्तर गोवा",
+      mr: "अस्सगाव, उत्तर गोवा",
+    },
+    city: "Goa",
+    country: "India",
+    bedrooms: 5,
+    bathrooms: 6,
+    areaSqFt: 9600,
+    image: "/images/waterfront.jpg",
+    featured: true,
+    exclusive: true,
+    description: {
+      en: "Set amidst the lush greenery of Assagao's fashion district, this meticulously restored 19th-century Portuguese estate combines original Burma teak beams with contemporary glass pavilions, private heated lap pool, and organic fruit orchards.",
+      hi: "अस्सगाओ के हरे-भरे क्षेत्र में स्थित यह 19वीं सदी का पुनर्जीवित पुर्तगाली एस्टेट बर्मा टीक की लकड़ियों, समकालीन कांच के पवेलियन, निजी गर्म पूल और जैविक बगीचों का अनूठा संगम है।",
+      mr: "अस्सगावच्या निसर्गरम्य परिसरात वसलेली ही 19व्या शतकातील इंडो-पोर्तुगीज वास्तू बर्मा सागवानी लाकूड, आधुनिक काचेचे दालन, खाजगी स्विमिंग पूल आणि फळबागांनी वेढलेली आहे.",
+    },
+    amenities: [
+      {
+        en: "Restored Burma Teak Rafters & Handcrafted Tiles",
+        hi: "बर्मा टीक की छत और हस्तनिर्मित टाइलें",
+        mr: "बर्मा सागवानी छप्पर व हस्तकलेच्या फरशा",
+      },
+      {
+        en: "Private 50-Foot Swimming Pool & Gazebo",
+        hi: "50-फुट निजी स्विमिंग पूल और गज़ेबो",
+        mr: "50 फुटांचा खाजगी स्विमिंग पूल व गझेबो",
+      },
+      {
+        en: "Private Mango, Coconut & Spice Orchards",
+        hi: "आम, नारियल और मसालों के निजी बगीचे",
+        mr: "आंबा, नारळ व मसाल्यांची खाजगी बाग",
+      },
+      {
+        en: "Separate 2-Bedroom Staff & Security Villa",
+        hi: "स्टाफ और सुरक्षाकर्मियों के लिए अलग विला",
+        mr: "कर्मचाऱ्यांसाठी स्वतंत्र 2-बेडरूम व्हिला",
+      },
+      {
+        en: "Full Diesel Generator & Solar Grid Backup",
+        hi: "100% सोलर एवं डीज़ल पावर बैकअप",
+        mr: "100% सोलर व जनरेटर बॅकअप",
+      },
+    ],
+    yearBuilt: 2023,
+    parkingSpaces: 4,
+    roiEstimate: {
+      en: "11.5% High Holiday Yield",
+      hi: "11.5% उच्च अवकाश किराया आय",
+      mr: "11.5% हॉलिडे रेंटल परतावा",
+    },
+    reraNumber: "GoaRERA: PRGO08231904",
+  },
+  {
+    id: "prop-4",
+    title: {
+      en: "The Lutyens' Imperial Bungalow",
+      hi: "लुटियंस इम्पीरियल हेरिटेज बंगला",
+      mr: "लुटियन्स इम्पेरियल हेरिटेज बंगला",
+    },
+    tagline: {
+      en: "Sovereign Colonial Architecture on Amrita Shergill Marg",
+      hi: "अमृता शेरगिल मार्ग पर संप्रभु औपनिवेशिक वास्तुकला",
+      mr: "अमृता शेरगिल मार्गावरील अत्यंत प्रतिष्ठित वारसा बंगला",
+    },
+    price: 920000000, // ₹92.00 Cr
+    formattedPrice: "₹92.00 Cr",
+    type: "Mansion",
+    category: "Buy",
+    location: {
+      en: "Amrita Shergill Marg, Lutyens' Delhi",
+      hi: "अमृता शेरगिल मार्ग, लुटियंस दिल्ली",
+      mr: "अमृता शेरगिल मार्ग, लुटियन्स दिल्ली",
+    },
+    city: "Delhi",
+    country: "India",
+    bedrooms: 7,
+    bathrooms: 10,
+    areaSqFt: 15800,
+    image: "/images/hero-villa.jpg",
+    featured: false,
+    exclusive: true,
+    description: {
+      en: "A generational trophy asset within the secured perimeter of Lutyens' Bungalow Zone (LBZ). Features a 1.2-acre manicured lawn with century-old banyan trees, classical colonial colonnades, grand ballroom, and high-security state perimeter.",
+      hi: "लुटियंस बंगला ज़ोन (LBZ) के अत्यंत सुरक्षित दायरे में स्थित यह पीढ़ीगत संपत्ति 1.2 एकड़ के लॉन, सदियों पुराने बरगद के पेड़ों, भव्य बॉलरूम और उच्च सुरक्षा परिधि से युक्त है।",
+      mr: "लुटियन्स बंगला झोनमधील (LBZ) ही अत्यंत दुर्मिळ मालमत्ता 1.2 एकर हिरवेगार लॉन, शतकानुशतके जुनी वडाची झाडे, भव्य बॉलरूम आणि उच्च सुरक्षेने सुसज्ज आहे.",
+    },
+    amenities: [
+      {
+        en: "1.2 Acres of Manicured Private Estate Lawns",
+        hi: "1.2 एकड़ का निजी सुरम्य लॉन",
+        mr: "1.2 एकरांचे विस्तीर्ण खाजगी लॉन",
+      },
+      {
+        en: "Full Length Tennis Court & Swimming Pavilion",
+        hi: "टेनिस कोर्ट और स्विमिंग पवेलियन",
+        mr: "टेनिस कोर्ट व स्विमिंग पॅव्हेलियन",
+      },
+      {
+        en: "Z-Plus Security Grade Perimeter & Guard Stations",
+        hi: "जेड-प्लस सुरक्षा अनुकूल परिधि",
+        mr: "उच्च सुरक्षा व्यवस्था व सुरक्षा रक्षक कक्ष",
+      },
+      {
+        en: "Heritage Grand Banquet Hall & Library",
+        hi: "हेरिटेज भव्य बैंक्वेट हॉल और पुस्तकालय",
+        mr: "हेरिटेज भव्य सभागृह व वाचनालय",
+      },
+      {
+        en: "12-Vehicle Undercover Motor Court",
+        hi: "12 गाड़ियों का सुरक्षित मोटर कोर्ट",
+        mr: "12 वाहनांसाठी खाजगी कव्हर पार्किंग",
+      },
+    ],
+    yearBuilt: 2022,
+    parkingSpaces: 10,
+    roiEstimate: {
+      en: "6.2% Sovereign Capital Growth",
+      hi: "6.2% दीर्घकालिक पूंजी वृद्धि",
+      mr: "6.2% दीर्घकालीन भांडवली वाढ",
+    },
+    reraNumber: "Delhi RERA: DLRERA2022P0018",
+  },
+  {
+    id: "prop-5",
+    title: {
+      en: "Sadashivnagar Sovereign Manor",
+      hi: "सदाशिवनगर सॉवरेन मैनर विला",
+      mr: "सदाशिवनगर सॉव्हरेन मॅनॉर व्हिला",
+    },
+    tagline: {
+      en: "Contemporary Architectural Villa in Bengaluru's Power Hub",
+      hi: "बेंगलुरु के सबसे प्रतिष्ठित इलाके में समकालीन विला",
+      mr: "बंगळूरुच्या सर्वात प्रतिष्ठित भागातील आधुनिक व्हिला",
+    },
+    price: 265000000, // ₹26.50 Cr
+    formattedPrice: "₹26.50 Cr",
+    type: "Villa",
+    category: "Buy",
+    location: {
+      en: "Sadashivnagar, Bengaluru",
+      hi: "सदाशिवनगर, बेंगलुरु",
+      mr: "सदाशिवनगर, बंगळूरु",
+    },
+    city: "Bangalore",
+    country: "India",
+    bedrooms: 5,
+    bathrooms: 6,
+    areaSqFt: 8800,
+    image: "/images/waterfront.jpg",
+    featured: false,
+    isNew: true,
+    description: {
+      en: "Nestled in Bengaluru's prestigious elite enclave, this contemporary villa features Japanese courtyards, automated louvers, temperature-regulated pool, Italian imported modular kitchen, and smart solar microgrid.",
+      hi: "बेंगलुरु के संभ्रांत क्षेत्र में स्थित यह आधुनिक विला जापानी कोर्टयार्ड, स्वचालित लौवर्स, तापमान-नियंत्रित पूल और स्मार्ट सोलर ग्रिड से सुसज्जित है।",
+      mr: "बंगळूरुच्या उच्चभ्रू भागात स्थित हा आधुनिक व्हिला जपानी कोर्टयार्ड, ऑटोमॅटिक शेड्स, तापमान-नियंत्रित पूल आणि स्मार्ट सोलर यंत्रणेने युक्त आहे.",
+    },
+    amenities: [
+      {
+        en: "Zen Japanese Central Water Courtyard",
+        hi: "ज़ेन जापानी वाटर कोर्टयार्ड",
+        mr: "झेन जपानी वॉटर कोर्टयार्ड",
+      },
+      {
+        en: "Rooftop Party Deck with Skyline View",
+        hi: "स्काईलाइन व्यू वाला रूफटॉप पार्टी डेक",
+        mr: "शहराचे विहंगम दृश्य देणारा रूफटॉप पार्टी डेक",
+      },
+      {
+        en: "Home Automation with KNX Smart Control",
+        hi: "KNX स्मार्ट ऑटोमेशन सिस्टम",
+        mr: "KNX स्मार्ट होम ऑटोमेशन सिस्टीम",
+      },
+      {
+        en: "Private Gymnasium & Steam Room",
+        hi: "निजी जिम और स्टीम रूम",
+        mr: "खाजगी व्यायामशाळा व स्टीम रूम",
+      },
+    ],
+    yearBuilt: 2024,
+    parkingSpaces: 5,
+    roiEstimate: {
+      en: "8.6% Net Annual Yield",
+      hi: "8.6% शुद्ध वार्षिक आय",
+      mr: "8.6% निव्वळ वार्षिक परतावा",
+    },
+    reraNumber: "RERA Karnataka: PRM/KA/RERA/1251/310",
+  },
+  {
+    id: "prop-6",
+    title: {
+      en: "Koregaon Park Presidential Residence",
+      hi: "कोरेगांव पार्क प्रेसिडेंशियल निवास",
+      mr: "कोरेगाव पार्क प्रेसिडेंशियल निवासस्थान",
+    },
+    tagline: {
+      en: "Bespoke Modern Estate on Tree-Lined Lane 5",
+      hi: "लेन 5 पर विशाल हरियाली से घिरा आधुनिक एस्टेट",
+      mr: "लेन 5 वरील हिरवेगार व शांत आधुनिक निवासस्थान",
+    },
+    price: 180000000, // ₹18.00 Cr
+    formattedPrice: "₹18.00 Cr",
+    type: "Villa",
+    category: "Buy",
+    location: {
+      en: "Lane 5, Koregaon Park, Pune",
+      hi: "लेन 5, कोरेगांव पार्क, पुणे",
+      mr: "लेन 5, कोरेगाव पार्क, पुणे",
+    },
+    city: "Pune",
+    country: "India",
+    bedrooms: 5,
+    bathrooms: 6,
+    areaSqFt: 7800,
+    image: "/images/penthouse.jpg",
+    featured: false,
+    isNew: false,
+    description: {
+      en: "Perched along the peaceful canopy of Koregaon Park, this luxury home boasts landscaped terrace gardens, infinity edge pool, imported Greek Thassos marble, and 5-tier biometric security.",
+      hi: "कोरेगांव पार्क की शांत छांव में स्थित इस भव्य घर में खूबसूरत छत के बगीचे, इन्फिनिटी पूल, ग्रीक थासोस मार्बल और 5-स्तरीय बायोमेट्रिक सुरक्षा शामिल है।",
+      mr: "कोरेगाव पार्कच्या शांत वातावरणात वसलेल्या या आलिशान घरात विहंगम टेरेस गार्डन, इन्फिनिटी पूल, ग्रीक थासोस मार्बल आणि 5-स्तरीय बायोमेट्रिक सुरक्षा व्यवस्था आहे.",
+    },
+    amenities: [
+      {
+        en: "Heated Infinity Lap Pool",
+        hi: "गरम पानी का इन्फिनिटी पूल",
+        mr: "तापमान-नियंत्रित इन्फिनिटी पूल",
+      },
+      {
+        en: "Imported Greek Thassos White Marble",
+        hi: "आयातित ग्रीक थासोस सफेद मार्बल",
+        mr: "आयात केलेले ग्रीक थासोस पांढरे मार्बल",
+      },
+      {
+        en: "Private Terraced Garden Lounge",
+        hi: "निजी टेरेस गार्डन लाउंज",
+        mr: "खाजगी टेरेस गार्डन लाउंज",
+      },
+      {
+        en: "Staff Quarters for 4 with Independent Access",
+        hi: "कर्मचारियों के लिए अलग कमरा व प्रवेश द्वार",
+        mr: "स्वतंत्र प्रवेशासह 4 कर्मचाऱ्यांसाठी खोल्या",
+      },
+    ],
+    yearBuilt: 2023,
+    parkingSpaces: 4,
+    roiEstimate: {
+      en: "8.2% Net Annual Yield",
+      hi: "8.2% शुद्ध वार्षिक आय",
+      mr: "8.2% निव्वळ वार्षिक परतावा",
+    },
+    reraNumber: "MahaRERA: P52100029810",
+  },
+];
