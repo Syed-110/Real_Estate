@@ -45,6 +45,16 @@ export default function PropertyCard({
         {/* Top Badges */}
         <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10 pointer-events-none">
           <div className="flex flex-wrap gap-2">
+            {property.status === "sold" && (
+              <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-rose-600 text-white border border-rose-400 shadow-md">
+                SOLD
+              </span>
+            )}
+            {property.category === "Rent" && (
+              <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-amber-500/20 text-amber-300 border border-amber-400/40 backdrop-blur-md">
+                FOR LEASE
+              </span>
+            )}
             {property.exclusive && (
               <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-gold-400 text-obsidian-950 shadow-md">
                 {t("badgeExclusive")}
@@ -78,7 +88,7 @@ export default function PropertyCard({
           </button>
         </div>
 
-        {/* Bottom Price Overlay (INR Crores) */}
+        {/* Bottom Price Overlay (INR: 10 Lakh to 1 Cr) */}
         <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between z-10">
           <div>
             <span className="text-[11px] uppercase tracking-wider text-slate-300 block">

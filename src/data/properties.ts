@@ -10,10 +10,10 @@ export interface Property {
   tagline: LocalizedText;
   price: number; // in INR Rupees
   formattedPrice: string; // e.g., "₹42.50 Cr"
-  type: "Villa" | "Penthouse" | "Waterfront" | "Mansion" | "Commercial";
+  type: "Villa" | "Penthouse" | "Waterfront" | "Mansion" | "Commercial" | "Shop" | "Home" | "Apartment" | string;
   category: "Buy" | "Rent";
   location: LocalizedText;
-  city: "Mumbai" | "Delhi" | "Goa" | "Bangalore" | "Pune";
+  city: "Mumbai" | "Delhi" | "Goa" | "Bangalore" | "Pune" | string;
   country: string;
   bedrooms: number;
   bathrooms: number;
@@ -28,6 +28,7 @@ export interface Property {
   parkingSpaces: number;
   roiEstimate: LocalizedText;
   reraNumber: string;
+  status?: "active" | "inactive" | "sold";
 }
 
 export const PROPERTIES: Property[] = [
@@ -43,8 +44,8 @@ export const PROPERTIES: Property[] = [
       hi: "अरब सागर और बांद्रा-वर्ली सी लिंक का मनमोहक दृश्य",
       mr: "अरबी समुद्र आणि वांद्रे-वरळी सी लिंकचे विहंगम दृश्य",
     },
-    price: 425000000, // ₹42.50 Cr
-    formattedPrice: "₹42.50 Cr",
+    price: 8500000, // ₹85 Lakh
+    formattedPrice: "₹85 Lakh",
     type: "Waterfront",
     category: "Buy",
     location: {
@@ -123,8 +124,8 @@ export const PROPERTIES: Property[] = [
       hi: "भारत की बिलेनियर रो पर दोहरी ऊंचाई वाला शीशमहल",
       mr: "भारतातील सर्वात प्रतिष्ठित बिलियनेअर्स रो वरील भव्य स्काय पेंटहाऊस",
     },
-    price: 680000000, // ₹68.00 Cr
-    formattedPrice: "₹68.00 Cr",
+    price: 9500000, // ₹95 Lakh
+    formattedPrice: "₹95 Lakh",
     type: "Penthouse",
     category: "Buy",
     location: {
@@ -193,8 +194,8 @@ export const PROPERTIES: Property[] = [
       hi: "पुनर्जीवित इंडो-पुर्तगाली लक्जरी एस्टेट और निजी कोर्टयार्ड",
       mr: "पुनरुज्जीवित इंडो-पोर्तुगीज लक्झरी वास्तू व खाजगी अंगण",
     },
-    price: 185000000, // ₹18.50 Cr
-    formattedPrice: "₹18.50 Cr",
+    price: 4500000, // ₹45 Lakh
+    formattedPrice: "₹45 Lakh",
     type: "Villa",
     category: "Buy",
     location: {
@@ -263,8 +264,8 @@ export const PROPERTIES: Property[] = [
       hi: "अमृता शेरगिल मार्ग पर संप्रभु औपनिवेशिक वास्तुकला",
       mr: "अमृता शेरगिल मार्गावरील अत्यंत प्रतिष्ठित वारसा बंगला",
     },
-    price: 920000000, // ₹92.00 Cr
-    formattedPrice: "₹92.00 Cr",
+    price: 10000000, // ₹1 Cr
+    formattedPrice: "₹1 Cr",
     type: "Mansion",
     category: "Buy",
     location: {
@@ -333,8 +334,8 @@ export const PROPERTIES: Property[] = [
       hi: "बेंगलुरु के सबसे प्रतिष्ठित इलाके में समकालीन विला",
       mr: "बंगळूरुच्या सर्वात प्रतिष्ठित भागातील आधुनिक व्हिला",
     },
-    price: 265000000, // ₹26.50 Cr
-    formattedPrice: "₹26.50 Cr",
+    price: 3500000, // ₹35 Lakh
+    formattedPrice: "₹35 Lakh",
     type: "Villa",
     category: "Buy",
     location: {
@@ -398,8 +399,8 @@ export const PROPERTIES: Property[] = [
       hi: "लेन 5 पर विशाल हरियाली से घिरा आधुनिक एस्टेट",
       mr: "लेन 5 वरील हिरवेगार व शांत आधुनिक निवासस्थान",
     },
-    price: 180000000, // ₹18.00 Cr
-    formattedPrice: "₹18.00 Cr",
+    price: 2500000, // ₹25 Lakh
+    formattedPrice: "₹25 Lakh",
     type: "Villa",
     category: "Buy",
     location: {
@@ -450,5 +451,137 @@ export const PROPERTIES: Property[] = [
       mr: "8.2% निव्वळ वार्षिक परतावा",
     },
     reraNumber: "MahaRERA: P52100029810",
+  },
+  {
+    id: "prop-7",
+    title: {
+      en: "Bandra High-Street Prime Retail Shop",
+      hi: "बांद्रा हाई-स्ट्रीट प्राइम रिटेल शॉप",
+      mr: "वांद्रे हाय-स्ट्रीट प्राईम रिटेल दुकान",
+    },
+    tagline: {
+      en: "High-Footfall Commercial Boutique on Linking Road",
+      hi: "लिंकिंग रोड पर उच्च फुटफॉल वाली कमर्शियल बुटीक",
+      mr: "लिंकिंग रोडवरील उच्च ग्राहक संख्या असलेले व्यावसायिक दुकान",
+    },
+    price: 1800000, // ₹18 Lakh
+    formattedPrice: "₹18 Lakh",
+    type: "Shop",
+    category: "Buy",
+    location: {
+      en: "Linking Road, Bandra West, Mumbai",
+      hi: "लिंकिंग रोड, बांद्रा वेस्ट, मुंबई",
+      mr: "लिंकिंग रोड, वांद्रे पश्चिम, मुंबई",
+    },
+    city: "Mumbai",
+    country: "India",
+    bedrooms: 0,
+    bathrooms: 1,
+    areaSqFt: 550,
+    image: "/images/penthouse.jpg",
+    featured: false,
+    isNew: true,
+    description: {
+      en: "Prime frontage corner retail shop with 18-foot ceiling heights, double glass display façade, dedicated three-phase power, and high organic footfall.",
+      hi: "18-फुट ऊंची छत, डबल ग्लास डिस्प्ले और तीन-फेज पावर कनेक्शन वाली प्रमुख कॉर्नर रिटेल शॉप।",
+      mr: "18 फूट उंच छप्पर, दुहेरी काचेचे डिस्प्ले आणि थ्री-फेज वीज जोडणीसह मुख्य कोपऱ्यातील व्यावसायिक दुकान.",
+    },
+    amenities: [
+      {
+        en: "18-Foot Double Height Ceiling",
+        hi: "18-फुट ऊंची छत",
+        mr: "18 फूट उंच छप्पर",
+      },
+      {
+        en: "Three-Phase 15kW Commercial Power",
+        hi: "15kW थ्री-फेज कमर्शियल पावर",
+        mr: "15kW थ्री-फेज व्यावसायिक वीज",
+      },
+      {
+        en: "High-Visibility Corner Glass Façade",
+        hi: "हाई-विजिबिलिटी ग्लास डिस्प्ले",
+        mr: "उच्च दृश्यमानता काचेचे डिस्प्ले",
+      },
+      {
+        en: "24/7 CCTV & Mall Security",
+        hi: "24/7 सीसीटीवी और सुरक्षा",
+        mr: "24/7 सीसीटीव्ही व सुरक्षा",
+      },
+    ],
+    yearBuilt: 2024,
+    parkingSpaces: 2,
+    roiEstimate: {
+      en: "9.5% Guaranteed Commercial Yield",
+      hi: "9.5% गारंटीड कमर्शियल आय",
+      mr: "9.5% हमी व्यावसायिक परतावा",
+    },
+    reraNumber: "MahaRERA: P51800039211",
+    status: "active",
+  },
+  {
+    id: "prop-8",
+    title: {
+      en: "Hinjawadi Smart Residential Home",
+      hi: "हिंजवड़ी स्मार्ट रेजिडेंशियल होम",
+      mr: "हिंजवडी स्मार्ट निवासी घर",
+    },
+    tagline: {
+      en: "Modern Vastu-Compliant 2-BHK Smart Flat",
+      hi: "आधुनिक 100% वास्तुसम्मत 2-बीएचके स्मार्ट फ्लैट",
+      mr: "आधुनिक १००% वास्तुशास्त्रानुसार २-बीएचके स्मार्ट फ्लॅट",
+    },
+    price: 1200000, // ₹12 Lakh
+    formattedPrice: "₹12 Lakh",
+    type: "Home",
+    category: "Buy",
+    location: {
+      en: "Phase 1, Hinjawadi, Pune",
+      hi: "फेज 1, हिंजवड़ी, पुणे",
+      mr: "फेज १, हिंजवडी, पुणे",
+    },
+    city: "Pune",
+    country: "India",
+    bedrooms: 2,
+    bathrooms: 2,
+    areaSqFt: 920,
+    image: "/images/hero-villa.jpg",
+    featured: false,
+    isNew: true,
+    description: {
+      en: "Beautifully designed 2-BHK smart residence featuring keyless entry, modular kitchen, open balconies with green park views, and clubhouse access.",
+      hi: "की-लेस एंट्री, मॉड्यूलर किचन, बालकनी और क्लब हाउस सुविधाओं से सुसज्जित सुंदर 2-बीएचके स्मार्ट घर।",
+      mr: "की-लेस प्रवेश, मॉड्यूलर किचन, हिरवेगार दृश्य आणि क्लबहाऊस सुविधांसह सुसज्ज सुंदर २-बीएचके स्मार्ट फ्लॅट.",
+    },
+    amenities: [
+      {
+        en: "Smart Digital Door Lock & Intercom",
+        hi: "डिजिटल डोर लॉक व इंटरकॉम",
+        mr: "डिजिटल डोअर लॉक व इंटरकॉम",
+      },
+      {
+        en: "Piped Gas & Modern Modular Kitchen",
+        hi: "पाइप्ड गैस और मॉड्यूलर किचन",
+        mr: "पाइप गॅस व मॉड्यूलर किचन",
+      },
+      {
+        en: "Resident Clubhouse & Swimming Pool",
+        hi: "क्लबहाउस और स्विमिंग पूल",
+        mr: "क्लबहाऊस व स्विमिंग पूल",
+      },
+      {
+        en: "Reserved Covered Car Parking",
+        hi: "आरक्षित कवर्ड कार पार्किंग",
+        mr: "राखीव कव्हर कार पार्किंग",
+      },
+    ],
+    yearBuilt: 2024,
+    parkingSpaces: 1,
+    roiEstimate: {
+      en: "7.2% Net Rental Yield",
+      hi: "7.2% शुद्ध किराया आय",
+      mr: "7.2% निव्वळ भाडे परतावा",
+    },
+    reraNumber: "MahaRERA: P52100031802",
+    status: "active",
   },
 ];

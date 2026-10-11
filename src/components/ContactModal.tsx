@@ -21,7 +21,7 @@ export default function ContactModal({
     name: "",
     phone: "",
     email: "",
-    budget: "₹15 Cr – ₹30 Cr",
+    budget: "₹30 Lakh – ₹60 Lakh",
     destination: "Mumbai",
     purpose: "Primary Residence",
     notes: "",
@@ -190,10 +190,10 @@ export default function ContactModal({
                     onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                     className="w-full px-4 py-2.5 rounded-xl bg-obsidian-900 border border-white/10 text-sm text-white focus:outline-none focus:border-gold-400"
                   >
-                    <option value="₹5 Cr – ₹15 Cr">₹5,00,00,000 – ₹15,00,00,000 (₹5–15 Cr)</option>
-                    <option value="₹15 Cr – ₹30 Cr">₹15,00,00,000 – ₹30,00,00,000 (₹15–30 Cr)</option>
-                    <option value="₹30 Cr – ₹60 Cr">₹30,00,00,000 – ₹60,00,00,000 (₹30–60 Cr)</option>
-                    <option value="₹60 Cr+">₹60,00,00,000+ (Trophy Estate Tier)</option>
+                    <option value="₹10 Lakh – ₹30 Lakh">₹10 Lakh – ₹30 Lakh (Starter Luxury)</option>
+                    <option value="₹30 Lakh – ₹60 Lakh">₹30 Lakh – ₹60 Lakh (Mid-Premium)</option>
+                    <option value="₹60 Lakh – ₹85 Lakh">₹60 Lakh – ₹85 Lakh (High-End)</option>
+                    <option value="₹85 Lakh – ₹1 Cr">₹85 Lakh – ₹1 Cr (Top Tier)</option>
                   </select>
                 </div>
 

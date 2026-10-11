@@ -26,9 +26,20 @@ export default function PropertiesSection({
 
   const filteredProperties = useMemo(() => {
     return properties.filter((item) => {
-      // Type tab
-      if (activeTypeTab !== "All" && item.type !== activeTypeTab) {
+      // Hide inactive properties from public landing page
+      if (item.status === "inactive") {
         return false;
+      }
+
+      // Type tab
+      if (activeTypeTab !== "All") {
+        if (activeTypeTab === "Villa" && (item.type === "Villa" || item.type === "Mansion")) {
+          // match
+        } else if (activeTypeTab === "Home" && (item.type === "Home" || item.type === "Apartment")) {
+          // match
+        } else if (item.type !== activeTypeTab) {
+          return false;
+        }
       }
 
       // City filter from Hero
@@ -43,19 +54,19 @@ export default function PropertiesSection({
         return false;
       }
 
-      // Price filter from Hero (in INR Rupees)
-      if (searchFilters.price === "tier1" && item.price > 150000000) return false;
-      if (searchFilters.price === "tier2" && (item.price < 150000000 || item.price > 300000000)) return false;
-      if (searchFilters.price === "tier3" && item.price < 300000000) return false;
+      // Price filter from Hero (in INR Rupees: 10 Lakh to 1 Cr)
+      if (searchFilters.price === "tier1" && item.price > 3500000) return false;
+      if (searchFilters.price === "tier2" && (item.price < 3500000 || item.price > 7000000)) return false;
+      if (searchFilters.price === "tier3" && item.price < 7000000) return false;
 
       // Text query
       if (searchQuery.trim() !== "") {
         const query = searchQuery.toLowerCase();
-        const titleEn = item.title.en.toLowerCase();
-        const titleHi = item.title.hi.toLowerCase();
-        const titleMr = item.title.mr.toLowerCase();
-        const locEn = item.location.en.toLowerCase();
-        const city = item.city.toLowerCase();
+        const titleEn = item.title?.en?.toLowerCase() || "";
+        const titleHi = item.title?.hi?.toLowerCase() || "";
+        const titleMr = item.title?.mr?.toLowerCase() || "";
+        const locEn = item.location?.en?.toLowerCase() || "";
+        const city = item.city?.toLowerCase() || "";
 
         const matches =
           titleEn.includes(query) ||
@@ -76,13 +87,28 @@ export default function PropertiesSection({
     });
   }, [properties, activeTypeTab, searchFilters, searchQuery, sortBy]);
 
-  const tabs = [
-    { label: t("tabAll"), value: "All" },
-    { label: t("tabWaterfront"), value: "Waterfront" },
-    { label: t("tabPenthouses"), value: "Penthouse" },
-    { label: t("tabVillas"), value: "Villa" },
-    { label: t("tabMansions"), value: "Mansion" },
-  ];
+  const tabs = useMemo(() => {
+    const list = [
+      { label: t("tabAll") || "All Estates", value: "All" },
+      { label: t("tabWaterfront") || "Sea-Facing", value: "Waterfront" },
+      { label: t("tabPenthouses") || "Sky Penthouses", value: "Penthouse" },
+      { label: t("tabVillas") || "Luxury Bungalows", value: "Villa" },
+    ];
+
+    const hasHomes = properties.some(
+      (p) => p.status !== "inactive" && (p.type === "Home" || p.type === "Apartment")
+    );
+    const hasShops = properties.some((p) => p.status !== "inactive" && p.type === "Shop");
+    const hasCommercial = properties.some(
+      (p) => p.status !== "inactive" && p.type === "Commercial"
+    );
+
+    if (hasHomes) list.push({ label: "Homes & Flats", value: "Home" });
+    if (hasShops) list.push({ label: "Shops & Retail", value: "Shop" });
+    if (hasCommercial) list.push({ label: "Commercial", value: "Commercial" });
+
+    return list;
+  }, [properties, t]);
 
   return (
     <section id="properties" className="py-20 md:py-32 relative bg-obsidian-950">

@@ -146,7 +146,7 @@ export default function Hero({ onSearch }: HeroProps) {
                 </div>
               </div>
 
-              {/* Price Range (INR Crores) */}
+              {/* Price Range (INR: 10 Lakh to 1 Cr) */}
               <div className="relative text-left">
                 <label className="block text-[11px] uppercase tracking-wider text-slate-400 mb-1 font-medium">
                   {t("labelValuation")}

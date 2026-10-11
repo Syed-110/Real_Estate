@@ -14,9 +14,11 @@ import ContactModal from "@/components/ContactModal";
 import MobileActionBar from "@/components/MobileActionBar";
 import { PROPERTIES, Property } from "@/data/properties";
 import { useLanguage } from "@/context/LanguageContext";
+import { useProperties } from "@/context/PropertyContext";
 
 export default function Home() {
   const { language } = useLanguage();
+  const { publicProperties } = useProperties();
   const [searchFilters, setSearchFilters] = useState({
     category: "Buy",
     location: "all",
@@ -65,7 +67,7 @@ export default function Home() {
 
       {/* Featured Properties Portfolio */}
       <PropertiesSection
-        properties={PROPERTIES}
+        properties={publicProperties}
         searchFilters={searchFilters}
         onSelectProperty={(prop) => setSelectedProperty(prop)}
         onBookViewing={(prop) => {

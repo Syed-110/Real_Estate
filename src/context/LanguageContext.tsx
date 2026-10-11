@@ -62,8 +62,8 @@ export const englishTranslations: Record<string, string> = {
   labelValuation: "Valuation Range",
   allValuations: "Any Valuation (₹)",
   searchCTA: "Discover",
-  stat1Val: "₹8,500+ Cr",
-  stat1Label: "Luxury Acquisitions Closed",
+  stat1Val: "500+",
+  stat1Label: "Curated Estates Transacted",
   stat2Val: "100%",
   stat2Label: "Clear Title & RERA Verified",
   stat3Val: "18+",
@@ -83,9 +83,9 @@ export const englishTranslations: Record<string, string> = {
   styleWaterfront: "Sea-Facing Sanctuary",
   styleMansion: "Palatial Trophy Estate",
 
-  valTier1: "₹5 Cr – ₹15 Cr",
-  valTier2: "₹15 Cr – ₹30 Cr",
-  valTier3: "₹30 Cr+ Ultra-Luxury Tier",
+  valTier1: "₹10 Lakh – ₹35 Lakh",
+  valTier2: "₹35 Lakh – ₹70 Lakh",
+  valTier3: "₹70 Lakh – ₹1 Cr",
 
   // Properties Section
   portfolioBadge: "Curated Indian Portfolio",
@@ -183,7 +183,7 @@ export const englishTranslations: Record<string, string> = {
   testBadge: "Private Client Endorsements",
   testTitle1: "Trusted by India's",
   testTitle2: "Foremost Families & Leaders",
-  testSubtitle: "Over ₹8,500 Cr in transactions executed for prominent industrial houses, tech founders, and family offices.",
+  testSubtitle: "Over 500+ successful transactions executed for prominent industrial houses, tech founders, and family offices.",
 
   // Contact Modal
   contactModalTitle: "Schedule Private VIP Consultation",

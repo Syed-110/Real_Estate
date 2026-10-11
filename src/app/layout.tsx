@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { PropertyProvider } from "@/context/PropertyContext";
+import { AdminAuthProvider } from "@/context/AdminAuthContext";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -147,7 +149,11 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
       <body className="bg-obsidian-950 text-slate-100 antialiased selection:bg-gold-500/30 selection:text-gold-200">
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          <PropertyProvider>
+            <AdminAuthProvider>{children}</AdminAuthProvider>
+          </PropertyProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

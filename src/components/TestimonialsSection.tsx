@@ -24,10 +24,10 @@ export default function TestimonialsSection() {
           : "Aayat Real Estate negotiated our Worli Sea Face sky villa completely off-market with total discretion. Their MahaRERA due diligence and escrow precision are unmatched in India.",
       estate:
         language === "hi"
-          ? "सफल सौदा: वर्ली सी फेस विला (₹42.5 Cr)"
+          ? "सफल सौदा: वर्ली सी फेस विला (₹85 Lakh)"
           : language === "mr"
-          ? "खरेदी: वरळी सी फेस व्हिला (₹42.5 Cr)"
-          : "Acquired: Worli Sea Face Villa (₹42.5 Cr)",
+          ? "खरेदी: वरळी सी फेस व्हिला (₹85 Lakh)"
+          : "Acquired: Worli Sea Face Villa (₹85 Lakh)",
     },
     {
       name: "Ananya Deshmukh",
@@ -45,10 +45,10 @@ export default function TestimonialsSection() {
           : "Securing an authentic Indo-Portuguese estate in Assagao with clean title was seamless. Aayat's team verified 70-year revenue records, Vastu harmony, and closed in 10 days.",
       estate:
         language === "hi"
-          ? "सफल सौदा: अस्सगाओ हेरिटेज विला (₹18.5 Cr)"
+          ? "सफल सौदा: अस्सगाओ हेरिटेज विला (₹45 Lakh)"
           : language === "mr"
-          ? "खरेदी: अस्सगाव हेरिटेज व्हिला (₹18.5 Cr)"
-          : "Acquired: Assagao Heritage Villa (₹18.5 Cr)",
+          ? "खरेदी: अस्सगाव हेरिटेज व्हिला (₹45 Lakh)"
+          : "Acquired: Assagao Heritage Villa (₹45 Lakh)",
     },
     {
       name: "Col. Vikramjit Kapoor",
@@ -66,10 +66,10 @@ export default function TestimonialsSection() {
           : "Their EMI structuring and rental yield forecasts were exceptionally thorough. Aayat Real Estate manages generational assets with institutional-grade sophistication.",
       estate:
         language === "hi"
-          ? "सफल सौदा: लुटियंस इम्पीरियल एस्टेट (₹92 Cr)"
+          ? "सफल सौदा: लुटियंस इम्पीरियल एस्टेट (₹1 Cr)"
           : language === "mr"
-          ? "खरेदी: लुटियन्स इम्पेरियल एस्टेट (₹92 Cr)"
-          : "Acquired: Lutyens' Imperial Enclave (₹92 Cr)",
+          ? "खरेदी: लुटियन्स इम्पेरियल एस्टेट (₹1 Cr)"
+          : "Acquired: Lutyens' Imperial Enclave (₹1 Cr)",
     },
   ];
 

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import BrandLogo from "./BrandLogo";
 import { Mail, Phone, ShieldCheck, ArrowRight, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
@@ -171,11 +172,13 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>© {new Date().getFullYear()} {t("footerCopyright")}</p>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 flex-wrap">
             <span className="hover:text-slate-400 cursor-pointer">Privacy Policy</span>
             <span className="hover:text-slate-400 cursor-pointer">MahaRERA Disclosures</span>
             <span className="hover:text-slate-400 cursor-pointer">Terms of Representation</span>
-            <span className="hover:text-slate-400 cursor-pointer">Equal Housing Opportunity</span>
+            <Link href="/admin" className="hover:text-gold-400 text-slate-500 font-medium transition-colors">
+              Admin Portal
+            </Link>
           </div>
         </div>
       </div>
