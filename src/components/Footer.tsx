@@ -22,10 +22,10 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-obsidian-950 border-t border-white/10 pt-16 pb-24 md:pb-16 text-slate-400">
+    <footer className="relative bg-obsidian-950 border-t border-white/10 pt-12 pb-20 md:pb-12 text-slate-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-16 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
           {/* Brand Info (2 columns) */}
           <div className="lg:col-span-2 space-y-4">
             <BrandLogo size="md" />

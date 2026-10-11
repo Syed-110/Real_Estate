@@ -39,10 +39,10 @@ export default function ServicesSection({ onOpenConsultation }: ServicesSectionP
   ];
 
   return (
-    <section id="vip-services" className="py-20 md:py-32 relative bg-obsidian-950">
+    <section id="vip-services" className="py-12 md:py-20 relative bg-obsidian-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold-400/10 border border-gold-400/30 text-gold-400 text-xs font-semibold uppercase tracking-[0.2em] mb-4">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t("servicesBadge")}</span>

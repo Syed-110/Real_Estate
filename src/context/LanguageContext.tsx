@@ -343,7 +343,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t, isTranslating }}>
-      <div id="google_translate_element" aria-hidden="true" />
+      <div
+        id="google_translate_element"
+        className="hidden pointer-events-none opacity-0 h-0 w-0 overflow-hidden"
+        style={{ display: "none" }}
+        aria-hidden="true"
+      />
       {children}
     </LanguageContext.Provider>
   );

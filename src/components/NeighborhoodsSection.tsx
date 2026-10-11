@@ -52,10 +52,10 @@ export default function NeighborhoodsSection({ onSelectLocation }: Neighborhoods
   ];
 
   return (
-    <section id="locations" className="py-20 md:py-32 relative bg-obsidian-900/40">
+    <section id="locations" className="py-12 md:py-20 relative bg-obsidian-900/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-10">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold-400/10 border border-gold-400/30 text-gold-400 text-xs font-semibold uppercase tracking-[0.2em] mb-4">
               <Building2 className="w-3.5 h-3.5" />

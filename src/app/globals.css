@@ -129,6 +129,7 @@ body > .skiptranslate,
 iframe[id*="container"],
 iframe.skiptranslate,
 #goog-gt-tt,
+#google_translate_element,
 .goog-te-balloon-frame {
   display: none !important;
   visibility: hidden !important;

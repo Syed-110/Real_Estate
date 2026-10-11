@@ -32,7 +32,7 @@ export default function Hero({ onSearch }: HeroProps) {
   };
 
   return (
-    <section className="relative min-h-[92vh] md:min-h-screen flex items-center justify-center pt-24 md:pt-32 pb-16 overflow-hidden">
+    <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center pt-24 md:pt-28 pb-10 md:pb-14 overflow-hidden">
       {/* Background Hero Image with Layered Gradient */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -182,7 +182,7 @@ export default function Hero({ onSearch }: HeroProps) {
         </div>
 
         {/* Indian HNW Trust Badges & Metrics */}
-        <div className="mt-12 sm:mt-16 w-full max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 border-t border-white/10 pt-8">
+        <div className="mt-8 sm:mt-12 w-full max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 border-t border-white/10 pt-6 sm:pt-8">
           <div className="text-center sm:text-left">
             <p className="text-2xl sm:text-3xl font-serif font-bold text-gold-400">{t("stat1Val")}</p>
             <p className="text-xs uppercase tracking-wider text-slate-400 mt-1">{t("stat1Label")}</p>
